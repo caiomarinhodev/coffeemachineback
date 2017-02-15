@@ -1,0 +1,16 @@
+/.coverage
+env/
+reports/
+.idea
+.settings/
+*.sqlite3
+*.pyc
+*.mo
+*.po~
+*.orig
+.gitignore~
+database.png
+xingu_back/xingu/migrations/*
+!xingu_back/xingu/migrations/__init__.py
+!xingu_back/xingu/migrations/0001_initial.py
+!xingu_back/xingu/migrations/*_version_*.py
