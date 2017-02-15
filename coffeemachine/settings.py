@@ -170,7 +170,7 @@ REST_FRAMEWORK = {
 JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,
     'JWT_AUTH_HEADER_PREFIX': 'Bearer',
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'xingu.views.user_views.jwt_response_payload_handler'
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'api.views.user_views.jwt_response_payload_handler'
 }
 
 # INSTALLED_APPS += (
