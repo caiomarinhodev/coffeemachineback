@@ -5,7 +5,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User as UserAdmin
 from django.contrib.auth.models import Group
 
-from api.models import User
+from api.models import User, Capsule
 # from xingu.models import Product
 # from xingu.models import Portal
 # from xingu.models import Client
@@ -61,32 +61,35 @@ class UserSerializer(serializers.ModelSerializer):
                 'is_active': instance['is_active']
             }
 
-#
-# class ProductSerializer(serializers.HyperlinkedModelSerializer):
-#     """
-#     This class is a product serializer.
-#     """
-#
-#     class Meta:
-#         model = Product
-#         fields = ('serial_number', 'model', 'situation', 'is_active')
-#
-#     def to_representation(self, instance):
-#         if isinstance(instance, Product):
-#             return {
-#                 'pk': instance.pk,
-#                 'serial_number': instance.serial_number,
-#                 'model': instance.model,
-#                 'situation': instance.situation,
-#                 'is_active': instance.is_active
-#             }
-#         else:
-#             return {
-#                 'serial_number': instance['serial_number'],
-#                 'model': instance['model'],
-#                 'situation': instance['situation'],
-#                 'is_active': instance['is_active']
-#             }
+
+class CapsuleSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    This class is a product serializer.
+    """
+
+    class Meta:
+        model = Capsule
+        fields = ('flavor', 'pk', 'price_cost', 'price_sale', 'cod_vendor', 'is_active')
+
+    def to_representation(self, instance):
+        if isinstance(instance, Capsule):
+            return {
+                'pk': instance.pk,
+                'flavor': instance.flavor,
+                'price_cost': instance.price_cost,
+                'price_sale': instance.price_sale,
+                'cod_vendor': instance.cod_vendor,
+                'is_active': instance.is_active
+            }
+        else:
+            return {
+                'flavor': instance['flavor'],
+                'price_cost': instance['price_cost'],
+                'price_sale': instance['price_sale'],
+                'cod_vendor': instance['cod_vendor'],
+                'is_active': instance['is_active']
+            }
+            
 #
 #
 # class PortalSerializer(serializers.HyperlinkedModelSerializer):

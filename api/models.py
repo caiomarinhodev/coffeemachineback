@@ -1,6 +1,9 @@
 from __future__ import unicode_literals
 
+import moneyed
+from django.core.validators import MinValueValidator
 from django.db import models
+from djmoney.models.fields import MoneyField, MoneyPatched
 from django.contrib.auth.models import User as UserAdmin
 from django.contrib.auth.models import Group
 from django.utils.translation import ugettext_lazy as _
@@ -68,6 +71,29 @@ class User(TimeStamped):
         user_admin.save()
         user.user = user_admin
         user.save()
+        
+    
+class Capsule(TimeStamped):
+    """
+    Capsule model.
+    """
+
+    flavor = models.CharField(max_length=100)
+    price_cost = MoneyField(max_digits=10, decimal_places=2, validators=[MinValueValidator(MoneyPatched(0, 'BRL'))])
+    price_sale = MoneyField(max_digits=10, decimal_places=2, validators=[MinValueValidator(MoneyPatched(0, 'BRL'))])
+    cod_vendor = models.CharField(max_length=100, blank=True, null=True)
+    is_active = models.BooleanField(default=True)
+
+    @staticmethod
+    def create(flavor, price_cost, price_sale, cod_vendor, is_active):
+        """
+        Create a capsule.
+        """
+        capsule = Capsule()
+        capsule.flavor = flavor
+        capsule.is_active = is_active
+        capsule.save()
+        return capsule
 
 
 

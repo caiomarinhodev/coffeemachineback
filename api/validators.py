@@ -17,13 +17,14 @@ def passowrd_validation(password):
         in lower case, one number and one symbol.
         Password must be have at least six characters.
     """
-    regex1 = r'([!,@,#,$,%,\^,&,*,?,_,~])+'
-    regex2 = '([A-Z])+'
-    regex3 = '([a-z])+'
-    regex4 = '([0-9])+'
-    if not (len(password) >= 8 and
-            re.search(regex1, password) is not None and
-            re.search(regex2, password) is not None and
-            re.search(regex3, password) is not None and
-            re.search(regex4, password) is not None):
+    # regex1 = r'([!,@,#,$,%,\^,&,*,?,_,~])+'
+    # regex2 = '([A-Z])+'
+    # regex3 = '([a-z])+'
+    # regex4 = '([0-9])+'
+    # if not (len(password) >= 8 and
+            # re.search(regex1, password) is not None and
+            # re.search(regex2, password) is not None and
+            # re.search(regex3, password) is not None and
+            # re.search(regex4, password) is not None):
+    if len(password) < 5:
         raise serializers.ValidationError('Password is in invalid format.')

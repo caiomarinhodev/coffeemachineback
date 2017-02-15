@@ -23,3 +23,5 @@ pylint
 pylint-django
 selenium
 unittest-xml-reporting
+py-moneyed
+django-money

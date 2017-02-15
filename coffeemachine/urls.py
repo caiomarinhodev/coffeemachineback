@@ -23,9 +23,11 @@ from api.views.reset import ResetView
 from api.views.payment import get_session, payment_card
 
 from api.views.user_views import UserViewSet
+from api.views.capsule_views import CapsuleViewSet
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', UserViewSet)
+router.register(r'capsules', CapsuleViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

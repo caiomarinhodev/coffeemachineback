@@ -23,11 +23,11 @@ class UserViewSet(ModelViewSet):
     permission_classes = (IsAuthenticated,)
     pagination_class = PageNumberPagination
 
-    @method_decorator(permission_required('xingu.list_user', raise_exception=True))
+    # @method_decorator(permission_required('xingu.list_user', raise_exception=True))
     def list(self, request):
         return ModelViewSet.list(self, request)
 
-    @method_decorator(permission_required('xingu.add_user', raise_exception=True))
+    # @method_decorator(permission_required('xingu.add_user', raise_exception=True))
     def create(self, request):
         return ModelViewSet.create(self, request)
 
@@ -82,7 +82,7 @@ class UserViewSet(ModelViewSet):
 
         return ModelViewSet.update(self, request, user_id, partial=partial)
 
-    @method_decorator(permission_required('xingu.delete_user', raise_exception=True))
+    # @method_decorator(permission_required('xingu.delete_user', raise_exception=True))
     def destroy(self, request, pk=None):
         if request.user.user.pk == int(pk):
             raise PermissionDenied
