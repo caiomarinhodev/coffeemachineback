@@ -18,12 +18,11 @@ from django.contrib import admin
 from rest_framework import routers
 from django.contrib.auth.views import password_reset_confirm, password_reset_complete
 
-from api import views
-from api.views import UserViewSet
-
 from api.views.login import LoginView
 from api.views.reset import ResetView
-from api.views.payment import *
+from api.views.payment import get_session, payment_card
+
+from api.views.user_views import UserViewSet
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', UserViewSet)
@@ -33,8 +32,8 @@ urlpatterns = [
     url(r'^retorno/pagseguro/', include('pagseguro.urls')),
     url(r'^', include(router.urls)),
     # Tests
-    url(r'^get-session/$', views.get_session),
-    url(r'^payment/$', views.payment_card),
+    url(r'^get-session/$', get_session),
+    url(r'^payment/$', payment_card),
     # BD
     url(r'^login', LoginView.as_view()),
     url(r'^recover', ResetView.as_view()),
