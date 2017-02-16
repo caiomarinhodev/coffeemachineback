@@ -12,18 +12,18 @@ function exit_if_error() {
     fi
 }
 
-mkdir -p xingu_back/reports/
-sloccount --duplicates --wide --details xingu_back > xingu_back/reports/sloccount.sc
+mkdir -p backcoffee/reports/
+sloccount --duplicates --wide --details backcoffee > backcoffee/reports/sloccount.sc
 
 virtualenv --python=python2 env
-env/bin/pip install -r xingu_back/requirements.txt
-env/bin/python xingu_back/manage.py violations --max=67
+env/bin/pip install -r backcoffee/requirements.txt
+env/bin/python backcoffee/manage.py violations --max=1000
 exit_if_error
-env/bin/python xingu_back/manage.py makemigrations
-env/bin/python xingu_back/manage.py migrate
+env/bin/python backcoffee/manage.py makemigrations
+env/bin/python backcoffee/manage.py migrate
 # env/bin/python xingu_back/manage.py compilemessages          # Create translation files
 # manage collectstatic --noinput  # Collect static files
-env/bin/python xingu_back/manage.py jenkins xingu --enable-coverage
-env/bin/coverage run --source='xingu_back/' xingu_back/manage.py test xingu
-env/bin/coverage xml -o xingu_back/reports/coverage.xml
+env/bin/python backcoffee/manage.py jenkins xingu --enable-coverage
+env/bin/coverage run --source='backcoffee/' backcoffee/manage.py test xingu
+env/bin/coverage xml -o backcoffee/reports/coverage.xml
 
